@@ -2,12 +2,16 @@ import { View, Text, SafeAreaView, ScrollView, ImageBackground, TextInput, Touch
 import React, { useState } from 'react'
 import { Feather } from '@expo/vector-icons'
 import Carousel from 'react-native-reanimated-carousel'
+import { useNavigation } from '@react-navigation/native'
 import { windowWidth } from '../utils/dimensions'
 import { freeGames, paidGames, sliderData } from '../model/data'
 import BannerSlider from '../components/banner-slider'
 import CustomSwitch from '../components/custom-switch'
 import ListItem from '../components/list-item'
+
 const HomeScreen = () => {
+
+    const navigation = useNavigation()
 
     const [gamesTab, setGamesTab] = useState(1)
 
@@ -73,12 +77,14 @@ const HomeScreen = () => {
                     width={windowWidth}
                     height={windowWidth / 2}
                     loop
+                    autoPlay
+                    autoPlayInterval={2000}
                     data={sliderData}
                     scrollAnimationDuration={1000}
                     renderItem={renderBanner}
                     mode='parallax'
                 />
-                <View style={{ marginVertical: 20, marginTop : -20 }}>
+                <View style={{ marginVertical: 20, marginTop: -20 }}>
                     <CustomSwitch
                         selectionMode={1}
                         option1="Free to play"
@@ -95,7 +101,7 @@ const HomeScreen = () => {
                             subTitle={item.subtitle}
                             isFree={item.isFree}
                             onPress={() =>
-                                navigation.navigate('GameDetails', {
+                                navigation.navigate('game-details-screen', {
                                     title: item.title,
                                     id: item.id,
                                 })
@@ -112,7 +118,7 @@ const HomeScreen = () => {
                             isFree={item.isFree}
                             price={item.price}
                             onPress={() =>
-                                navigation.navigate('GameDetails', {
+                                navigation.navigate('game-details-screen', {
                                     title: item.title,
                                     id: item.id,
                                 })

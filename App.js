@@ -1,20 +1,16 @@
 import { StatusBar } from 'expo-status-bar'
 import { StyleSheet, Text, View } from 'react-native'
 import { NavigationContainer } from '@react-navigation/native'
-import OnboardingScreen from './src/screens/onboarding-screen'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
-import HomeScreen from './src/screens/home-screen'
+import AuthStack from './src/navigation/auth-stack/auth-stack'
+import AppStack from './src/navigation/app-stack/app-stack'
 
 export default function App() {
 
-  const Stack = createNativeStackNavigator()
-
   return (
       <NavigationContainer>
-        <Stack.Navigator>
-          <Stack.Screen name='onboarding-screen' component={OnboardingScreen} options={{headerShown : false}}/>
-          <Stack.Screen name='home-screen' component={HomeScreen} options={{headerShown : false}}/>
-        </Stack.Navigator>
+        {/* <AuthStack /> */}
+        <AppStack />
       </NavigationContainer>
   )
 }
